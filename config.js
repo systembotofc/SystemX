@@ -10,11 +10,11 @@ import moment from 'moment-timezone'
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
 global.owner = [
-  ['51955918117', 'Danịel 🇦🇱⁩', true],
-  ['5491122461521'],
-  ['524434703586'],
-  ['51955918117'],
-  ['5491122461521']
+  ['51936732723', '𝑫𝒆𝒗𝒆𝒍𝒐𝒑𝒆𝒓𝑿⁩👑', true],
+  ['51936732723'],
+  ['51936732723'],
+  ['51936732723'],
+  ['51936732723']
 ]
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
@@ -25,12 +25,12 @@ global.prems = []
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
 global.packname = ``
-global.author = '{\n "bot": {\n   "name": "Sumi - Sakurasawa",\n     "author": "Danịel",\n   "status_bot": "active"\n }\n}'
-global.wait = '🐢 *Sumi Sakurasawa*'
-global.botname = 'Sumi - Sakurasawa'
-global.textbot = `Powered By Starlights Team`
-global.listo = '*🍭 Aqui tiene*'
-global.namechannel = '【 ✯ Starlights Team - Oficial Chanel ✰ 】'
+global.author = '{\n "bot": {\n   "name": "𝑺𝒚𝒔𝒕𝒆𝒎𝑿",\n     "author": "𝑫𝒆𝒗𝒆𝒍𝒐𝒑𝒆𝒓𝑿",\n   "status_bot": "active"\n }\n}'
+global.wait = '𝑺𝒚𝒔𝒕𝒆𝒎𝑿🤖'
+global.botname = '𝑺𝒚𝒔𝒕𝒆𝒎𝑿🤖'
+global.textbot = `𝑫𝒆𝒗𝒆𝒍𝒐𝒑𝒆𝒓𝑿👑`
+global.listo = '𝑬𝒏𝒕𝒓𝒆𝒈𝒂 𝑬𝒙𝒊𝒕𝒐𝒔𝒂✅'
+global.namechannel = '【 𝐒𝐘𝐒𝐓𝐄𝐌𝐗 - 𝐃𝐄𝐕𝐄𝐋𝐎𝐏𝐄𝐑𝐗 】'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
@@ -39,8 +39,8 @@ global.miniurl = fs.readFileSync('./storage/img/miniurl.jpg')
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.group = 'https://chat.whatsapp.com/J1R402WH1N0Hdl3S0NDEYu'
-global.canal = 'https://whatsapp.com/channel/0029VaBpO8M3rZZdwkGFIP33'
+global.group = 'https://whatsapp.com/channel/0029VajUEsCB4hdNTg04zh1u'
+global.canal = 'https://whatsapp.com/channel/0029VajUEsCB4hdNTg04zh1u'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
