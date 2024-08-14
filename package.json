@@ -16,10 +16,7 @@
     "test": "node test.js",
     "test2": "nodemon index.js",
     "eslint": "eslint .",
-    "eslintfix": "eslint --fix .",
-    "prepublishOnly": "npm run lint && npm run build",
-    "build": "tsc",  // Agrega un script de build si estás usando TypeScript
-    "lint": "eslint ."
+    "eslintfix": "eslint --fix ."
   },
   "homepage": "https://github.com/DanielDiod/Sumi-Sakurasawa",
   "author": {
