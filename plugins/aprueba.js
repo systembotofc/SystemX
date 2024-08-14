@@ -54,7 +54,7 @@ https://whatsapp.com/channel/0029VajUEsCB4hdNTg04zh1u
 }
 
 let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
- try {
+  try {
     let _package = JSON.parse(await promises.readFile(join(__dirname, '../package.json')).catch(_ => ({}))) || {}
     let { exp, star, level } = global.db.data.users[m.sender]
     let { min, xp, max } = xpRange(level, global.multiplier)
@@ -87,6 +87,15 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
         setTimeout(resolve, 1000)
       }) * 1000
     }
+    
+    // Función para formatear el tiempo
+    function clockString(ms) {
+      let h = Math.floor(ms / 3600000)
+      let m = Math.floor((ms % 3600000) / 60000)
+      let s = Math.floor((ms % 60000) / 1000)
+      return [h, m, s].map(v => v.toString().padStart(2, 0)).join(':')
+    }
+    
     let muptime = clockString(_muptime)
     let uptime = clockString(_uptime)
     let totalreg = Object.keys(global.db.data.users).length
