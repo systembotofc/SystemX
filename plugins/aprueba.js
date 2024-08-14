@@ -61,10 +61,6 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
     let name = await conn.getName(m.sender)
     let d = new Date(new Date + 3600000)
     let locale = 'es'
-    // d.getTimeZoneOffset()
-    // Offset -420 is 18.00
-    // Offset    0 is  0.00
-    // Offset  420 is  7.00
     let weton = ['Pahing', 'Pon', 'Wage', 'Kliwon', 'Legi'][Math.floor(d / 84600000) % 5]
     let week = d.toLocaleDateString(locale, { weekday: 'long' })
     let date = d.toLocaleDateString(locale, {
@@ -161,35 +157,29 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
     let pp4 = 'https://th.bing.com/th/id/OIG3.cLOJAQj8neUVXa2OXGEU?w=270&h=270&c=6&r=0&o=5&pid=ImgGn'
     m.react('✅')
    
-  //  conn.sendMessage(m.chat, { video: { url: [pp, pp2, pp3, pp4].getRandom() }, gifPlayback: true, caption: text.trim(), mentions: [m.sender] }, { quoted: m })
-let listSections = []    
-listSections.push({
-title: '',
-rows: [{ header: "📚ＭＥＮＵ ＣＯＭＰＬＥＴＯ", title: "", id: `.allmenu`, description: `𝙼𝚞𝚎𝚜𝚝𝚛𝚊𝚖𝚎 𝚝𝚘𝚍𝚘𝚜 𝚕𝚘𝚜 𝚌𝚘𝚖𝚊𝚗𝚍𝚘𝚜 𝚍𝚎 𝙼𝚒𝚣𝚞𝚔𝚒 | 𝙱𝚘𝚝\n` }, { header: "🤖ＳＵＤ ＢＯＴ", title: "", id: `.serbot --code`, description: `𝚀𝚞𝚒𝚎𝚛𝚘 𝚌𝚘𝚗𝚟𝚎𝚛𝚝𝚒𝚛𝚖𝚎 𝚎𝚗 𝚂𝚞𝚍𝙱𝚘𝚝 𝚍𝚎 𝙼𝚒𝚣𝚞𝚔𝚒 | 𝙱𝚘𝚝\n` },
-{ header: "ＬＩＳＴＡＳ🇵🇪", title: "", id: `.ejemplo🇵🇪`, description: `𝙼𝚞𝚎𝚜𝚝𝚛𝚊𝚖𝚎 𝚎𝚓𝚎𝚖𝚙𝚕𝚘 𝚍𝚎𝚕 𝚌𝚘𝚖𝚊𝚗𝚍𝚘 𝚙𝚊𝚛𝚊 𝚟𝚎𝚛 𝚝𝚘𝚍𝚊𝚜 𝚕𝚊𝚜 𝚕𝚒𝚜𝚝𝚊𝚜 𝚌𝚘𝚗 𝚎𝚕 𝚑𝚘𝚛𝚊𝚛𝚒𝚘 𝚍𝚎 𝙿𝚎𝚛ú.\n` },
-{ header: "ＬＩＳＴＡＳ🇨🇱", title: "", id: `.ejemplo🇨🇱`, description: `𝙼𝚞𝚎𝚜𝚝𝚛𝚊𝚖𝚎 𝚎𝚓𝚎𝚖𝚙𝚕𝚘 𝚍𝚎𝚕 𝚌𝚘𝚖𝚊𝚗𝚍𝚘 𝚙𝚊𝚛𝚊 𝚟𝚎𝚛 𝚝𝚘𝚍𝚊𝚜 𝚕𝚊𝚜 𝚕𝚒𝚜𝚝𝚊𝚜 𝚌𝚘𝚗 𝚎𝚕 𝚑𝚘𝚛𝚊𝚛𝚒𝚘 𝚍𝚎 𝙲𝚑𝚒𝚕𝚎.\n` },
-{ header: "ＬＩＳＴＡＳ🇦🇷", title: "", id: `.ejemplo🇦🇷`, description: `𝙼𝚞𝚎𝚜𝚝𝚛𝚊𝚖𝚎 𝚎𝚓𝚎𝚖𝚙𝚕𝚘 𝚍𝚎𝚕 𝚌𝚘𝚖𝚊𝚗𝚍𝚘 𝚙𝚊𝚛𝚊 𝚟𝚎𝚛 𝚝𝚘𝚍𝚊𝚜 𝚕𝚊𝚜 𝚕𝚒𝚜𝚝𝚊𝚜 𝚌𝚘𝚗 𝚎𝚕 𝚑𝚘𝚛𝚊𝚛𝚒𝚘 𝚍𝚎 𝙰𝚛𝚐𝚎𝚗𝚝𝚒𝚗𝚊.` }
-]})
-await conn.sendList(m.chat, '*\`╭━〔 𝐎𝐏𝐂𝐈𝐎𝐍𝐄𝐒 | 𝐋𝐈𝐒𝐓𝐀𝐒 〕━╮\`*\n┃➔ *👑𝘿𝙚𝙫𝙚𝙡𝙤𝙥𝙚𝙧:* Benjamin\n┃➔ *☑𝙑𝙚𝙧𝙨𝙞𝙤𝙣:* 1.0.0\n┃➔ *❗𝘾𝙖𝙣𝙖𝙡 𝙙𝙚 𝙒𝙝𝙖𝙩𝙨𝘼𝙥𝙥:*\n┃➔ https://whatsapp.com/channel/0029VajUEsCB4hdNTg04zh1u\n╰━━━━━━━━━━━━━╯', null, `𝐎𝐏𝐂𝐈𝐎𝐍𝐄𝐒 | 𝐋𝐈𝐒𝐓𝐀𝐒`, listSections, { mentions: [m.sender]}, {quoted: m})
+    // Configuración de los botones
+    let listSections = [
+      {
+        title: 'Opciones de Menú',
+        rows: [
+          { title: '📚 MENÚ COMPLETO', description: 'Muestra todos los comandos disponibles.', id: '.allmenu' },
+          { title: '🤖 SUD BOT', description: 'Conviértete en SudBot.', id: '.serbot --code' },
+          { title: 'LISTAS 🇵🇪', description: 'Muestra las listas con horarios para Perú.', id: '.ejemplo🇵🇪' },
+          { title: 'LISTAS 🇨🇱', description: 'Muestra las listas con horarios para Chile.', id: '.ejemplo🇨🇱' },
+          { title: '🎮 JUEGOS', description: 'Opciones de juegos disponibles.', id: '.game' },
+          { title: '🛠️ HERRAMIENTAS', description: 'Herramientas disponibles para el uso.', id: '.tools' },
+        ]
+      }
+    ]
+    await conn.sendList(m.chat, text, 'Texto', 'Descripción', listSections, m)
   } catch (e) {
-    conn.reply(m.chat, '❎ Lo sentimos, el menú tiene un error.', m)
-    throw e
+    m.reply('Ocurrió un error')
+    console.error(e)
   }
 }
 
-handler.help = ['listas6']
-handler.tags = ['listas6']
-handler.command = ['listas6', 'listas6', 'listas6'] 
-handler.register = true 
+handler.help = ['menu9']
+handler.tags = ['main9']
+handler.command = /^(menu9|help9)$/i
+
 export default handler
-
-
-const more = String.fromCharCode(8206)
-const readMore = more.repeat(4001)
-
-function clockString(ms) {
-  let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000)
-  let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
-  let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
-  return [h, m, s].map(v => v.toString().padStart(2, 0)).join(':')
-}
