@@ -1,38 +1,73 @@
-import { MessageType, Mimetype } from '@adiwajshing/baileys'
-import fetch from 'node-fetch'
-import { promises as fs } from 'fs'
-import path from 'path'
+import { MessageType } from '@adiwajshing/baileys'
 
-const handler = async (m, { conn, usedPrefix: _p }) => {
+// Comando para enviar el menú con botones
+const handler = async (m, { conn }) => {
   try {
-    // Definir el texto del mensaje
-    const text = '¡Hola! Aquí tienes algunas opciones para interactuar con el bot:'
-    
-    // Crear los botones interactivos
-    const buttons = [
-      { buttonId: '.option1', buttonText: { displayText: 'Opción 1' }, type: 1 },
-      { buttonId: '.option2', buttonText: { displayText: 'Opción 2' }, type: 1 },
-      { buttonId: '.option3', buttonText: { displayText: 'Opción 3' }, type: 1 }
+    // Configuración de los botones
+    const listSections = [
+      {
+        title: 'Opciones de Menú',
+        rows: [
+          { title: '📚 MENÚ COMPLETO', description: 'Muestra todos los comandos disponibles.', id: 'allmenu' },
+          { title: '🤖 SUD BOT', description: 'Conviértete en SudBot.', id: 'serbot' },
+          { title: '🎮 JUEGOS', description: 'Opciones de juegos disponibles.', id: 'game' },
+          { title: '🛠️ HERRAMIENTAS', description: 'Herramientas disponibles para el uso.', id: 'tools' },
+        ]
+      }
     ]
-    
-    const buttonMessage = {
-      text,
-      footer: 'Selecciona una opción:',
-      buttons,
-      headerType: 1
-    }
-    
+
     // Enviar el mensaje con botones
-    await conn.sendMessage(m.chat, buttonMessage, MessageType.buttonsMessage)
-    
+    await conn.sendList(
+      m.chat,
+      'Elige una opción del menú:',
+      'Texto del Mensaje',
+      'Descripción del Mensaje',
+      listSections,
+      m
+    )
   } catch (e) {
-    m.reply('Ocurrió un error')
-    console.error(e)
+    console.error('Error al enviar el mensaje con botones:', e)
+    m.reply('Ocurrió un error al enviar el mensaje.')
   }
 }
 
-handler.help = ['aprueba']
-handler.tags = ['main']
-handler.command = /^(aprueba|approve)$/i
+// Manejo de las respuestas a los botones
+const handleButtonResponses = async (m, { conn }) => {
+  try {
+    if (m.message && m.message.buttonsResponseMessage) {
+      const buttonId = m.message.buttonsResponseMessage.selectedButtonId
 
-export default handler
+      switch (buttonId) {
+        case 'allmenu':
+          await conn.sendMessage(m.chat, 'Has seleccionado el Menú Completo', MessageType.text)
+          break
+        case 'serbot':
+          await conn.sendMessage(m.chat, 'Has seleccionado SudBot', MessageType.text)
+          break
+        case 'game':
+          await conn.sendMessage(m.chat, 'Has seleccionado Juegos', MessageType.text)
+          break
+        case 'tools':
+          await conn.sendMessage(m.chat, 'Has seleccionado Herramientas', MessageType.text)
+          break
+        default:
+          await conn.sendMessage(m.chat, 'Opción no reconocida', MessageType.text)
+      }
+    }
+  } catch (e) {
+    console.error('Error al manejar la respuesta del botón:', e)
+  }
+}
+
+// Comando para invocar el menú
+handler.help = ['menu']
+handler.tags = ['main']
+handler.command = /^(menu7)$/i
+
+// Exportar el handler
+export default async (m, { conn }) => {
+  if (m.message && m.message.conversation === '!menu7') {
+    await handler(m, { conn })
+  }
+  await handleButtonResponses(m, { conn })
+}
