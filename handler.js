@@ -411,7 +411,7 @@ global.dfail = (type, m, conn, usedPrefix) => {
         private: `🍭 Hola, este comando solo puede ser utilizado en mi Chat *Privado*.`,
         admin: `🍭 Hola, este comando solo puede ser utilizado por los *Administradores* del Grupo.`,
         botAdmin: `🍭 Hola, la bot debe ser *Administradora* para ejecutar este Comando.`,
-        unreg: `🍭 Hola, para usar este comando debes estar *Registrado.*\n\nUtiliza: */reg nombre.edad*\n\n> Ejemplo: /reg Daniel.17`,
+        unreg: `> 👤𝐔𝐒𝐔𝐀𝐑𝐈𝐎: @${m.sender.split`@`[0]}\n> 𝐏𝐀𝐑𝐀 𝐄𝐋 𝐔𝐒𝐎 𝐃𝐄 𝐄𝐒𝐓𝐄 𝐂𝐎𝐌𝐀𝐍𝐃𝐎, 𝐒𝐈𝐆𝐔𝐄 𝐋𝐎𝐒 𝐒𝐈𝐆𝐔𝐈𝐄𝐍𝐓𝐄 𝐏𝐀𝐒𝐎𝐒:\n\n\`1️⃣𝑼𝒏𝒆𝒕𝒆 𝒂𝒍 𝒄𝒂𝒏𝒂𝒍 𝒐𝒇𝒊𝒄𝒊𝒂𝒍 𝑺𝒚𝒔𝒕𝒆𝒎𝑿\`\nhttps://whatsapp.com/channel/0029VajUEsCB4hdNTg04zh1u\n\`2️⃣𝑹𝒆𝒈𝒊𝒔𝒕𝒓𝒂𝒕𝒆 𝒆𝒏 𝒎𝒊 𝒃𝒂𝒔𝒆 𝒅𝒆 𝒅𝒂𝒕𝒐𝒔 𝒖𝒔𝒂𝒏𝒅𝒐 𝒆𝒍 𝒔𝒊𝒈𝒖𝒊𝒆𝒏𝒕𝒆 𝒄𝒐𝒎𝒂𝒏𝒅𝒐:\`\n\`𝐂𝐎𝐌𝐀𝐍𝐃𝐎:\` /𝒓𝒆𝒈 𝑵𝒐𝒎𝒃𝒓𝒆.𝑬𝒅𝒂𝒅`,
         restrict: `🍭 Hola, esta característica está *deshabilitada.*`  
     }[type]
     if (msg) return conn.reply(m.chat, msg, m, rcanal).then(_ => m.react('✖️'))
