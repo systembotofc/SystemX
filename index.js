@@ -1,6 +1,6 @@
 console.log('✯ Iniciando ✯')
 
-import { join, dirname } from 'path'
+import { dirname, join } from 'path'
 import { createRequire } from 'module';
 import { fileURLToPath } from 'url'
 import { setupMaster, fork } from 'cluster'
@@ -13,7 +13,8 @@ import chalk from 'chalk'
 import path from 'path'
 import os from 'os'
 import { promises as fsPromises } from 'fs'
-import { WAConnection } from '@whiskeysockets/baileys'
+import pkg from '@whiskeysockets/baileys'  // Importación por defecto de CommonJS
+const { WAConnection } = pkg  // Extracción de WAConnection desde el paquete
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const require = createRequire(__dirname)
@@ -31,57 +32,54 @@ say('Sumi\nSakurasawa', {
 
 var isRunning = false
 
-async function start(files) {
+async function start() {
   if (isRunning) return;
   isRunning = true;
 
-  for (const file of files) {
-    const currentFilePath = new URL(import.meta.url).pathname;
-    let args = [join(__dirname, file), ...process.argv.slice(2)];
-    say([process.argv[0], ...args].join(' '), {
-      font: 'console',
-      align: 'center',
-      gradient: ['red', 'magenta']
+  const args = [join(__dirname, 'index.js'), ...process.argv.slice(2)];
+  say([process.argv[0], ...args].join(' '), {
+    font: 'console',
+    align: 'center',
+    gradient: ['red', 'magenta']
+  });
+
+  setupMaster({
+    exec: args[0],
+    args: args.slice(1),
+  });
+
+  let p = fork();
+  p.on('message', data => {
+    console.log('[RECEIVED]', data);
+    switch (data) {
+      case 'reset':
+        p.process.kill();
+        isRunning = false;
+        start();
+        break;
+      case 'uptime':
+        p.send(process.uptime());
+        break;
+    }
+  });
+
+  p.on('exit', (_, code) => {
+    isRunning = false;
+    console.error('Ocurrió un error inesperado:', code)
+    start();
+
+    if (code === 0) return;
+    watchFile(args[0], () => {
+      unwatchFile(args[0]);
+      start();
     });
+  });
 
-    setupMaster({
-      exec: args[0],
-      args: args.slice(1),
+  let opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse());
+  if (!opts['test'])
+    if (!rl.listenerCount()) rl.on('line', line => {
+      p.emit('message', line.trim());
     });
-
-    let p = fork();
-    p.on('message', data => {
-      console.log('[RECEIVED]', data);
-      switch (data) {
-        case 'reset':
-          p.process.kill();
-          isRunning = false;
-          start(files);
-          break;
-        case 'uptime':
-          p.send(process.uptime());
-          break;
-      }
-    });
-
-    p.on('exit', (_, code) => {
-      isRunning = false;
-      console.error('Ocurrió un error inesperado:', code)
-      start(files);
-
-      if (code === 0) return;
-      watchFile(args[0], () => {
-        unwatchFile(args[0]);
-        start(files);
-      });
-    });
-
-    let opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse());
-    if (!opts['test'])
-      if (!rl.listenerCount()) rl.on('line', line => {
-        p.emit('message', line.trim());
-      });
-  }
 }
 
 // Inicialización del bot y conexión
@@ -133,7 +131,7 @@ async function initializeBot() {
   await conn.connect()
 }
 
-start(['starlights.js']).then(() => {
+start().then(() => {
   initializeBot().catch(console.error)
 })
 
